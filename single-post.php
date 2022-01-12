@@ -23,11 +23,9 @@ include 'db.php';
         if (isset($_GET['post_id'])) {
 
             $sql = "SELECT * FROM posts WHERE id = {$_GET['post_id']}";
-            $singlePost = getAllData($connection, $sql);
+            $singlePost = getData($connection, $sql);
 
-            echo '<pre>';
-            var_dump($singlePost);
-            echo '</pre>';
+
 
         ?>
 
@@ -37,8 +35,8 @@ include 'db.php';
 
                     <div class="blog-post">
                         <h2 class="blog-post-title"><?php echo ($singlePost['title']) ?></h2>
-                        <p class="blog-post-meta"><?php echo ($singlePost['created_at']) ?>. by <a href="#">Mark</a></p>
-
+                        <p class="blog-post-meta"><?php echo ($singlePost['created_at']) ?>. by <a href="#"><?php echo ($singlePost['author']) ?></a></p>
+                        <div><strong><?php echo ($singlePost['body']) ?></strong></div>
                     </div><!-- /.blog-post -->
 
                 <?php
@@ -49,7 +47,7 @@ include 'db.php';
     </main>
 
     <?php
-    include 'side-bar.php';
+    include 'sidebar.php';
     include 'footer.php';
     ?>
 

@@ -25,6 +25,10 @@ include 'db.php';
             $sql = "SELECT * FROM posts WHERE id = {$_GET['post_id']}";
             $singlePost = getData($connection, $sql);
 
+            $sql2 = "SELECT * FROM comments WHERE post_id = {$_GET['post_id']}";
+            $comments = getAllData($connection, $sql2);
+
+
 
 
         ?>
@@ -44,6 +48,21 @@ include 'db.php';
                 echo 'post nije pronadjen';
             }
                 ?>
+
+                <div>
+                    <h3><strong>Comments</strong></h3>
+                    <div>
+                        <ul>
+                            <?php foreach ($comments as $comment) { ?>
+                                <div>
+                                    <li><?php echo ($comment['author']) ?> </br> <?php echo ($comment['text']) ?> </li>
+                                    <hr>
+                                </div>
+                            <?php } ?>
+                        </ul>
+                    </div>
+
+                </div>
     </main>
 
     <?php
